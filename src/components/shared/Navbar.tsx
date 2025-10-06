@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -9,9 +10,16 @@ import {
 } from "../ui/navigation-menu";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export const Navbar = () => {
+  const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenuOpen = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <header className="py-4 shadow-md">
       <nav className="flex justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,22 +34,31 @@ export const Navbar = () => {
         <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList>
             <NavigationMenuItem className="flex space-x-8 items-center">
-              <NavigationMenuLink className="hover:text-red-600" href="/news">
+              <NavigationMenuLink
+                className={` ${
+                  pathname === "/news" ? "text-blue-700 font-semibold" : ""
+                }`}
+                href="/news"
+              >
                 News
               </NavigationMenuLink>
               <NavigationMenuLink
-                className="hover:text-red-600"
+                className={` ${
+                  pathname === "/services" ? "text-blue-700 font-semibold" : ""
+                }`}
                 href="/services"
               >
-                <NavigationMenuTrigger className="hover:text-red-600">
-                  Services
-                </NavigationMenuTrigger>
+                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="shadow-md rounded-md px-5 py-4 space-y-2">
                     <li>
                       <NavigationMenuLink
                         href="/services/web"
-                        className="hover:text-red-600"
+                        className={` ${
+                          pathname === "/services/web"
+                            ? "text-blue-700 font-semibold"
+                            : ""
+                        }`}
                       >
                         Web Dev
                       </NavigationMenuLink>
@@ -49,7 +66,11 @@ export const Navbar = () => {
                     <li>
                       <NavigationMenuLink
                         href="/services/seo"
-                        className="hover:text-red-600"
+                        className={` ${
+                          pathname === "/services/seo"
+                            ? "text-blue-700 font-semibold"
+                            : ""
+                        }`}
                       >
                         SEO
                       </NavigationMenuLink>
@@ -57,7 +78,11 @@ export const Navbar = () => {
                     <li>
                       <NavigationMenuLink
                         href="/services/mobile"
-                        className="hover:text-red-600"
+                        className={` ${
+                          pathname === "/services/mobile"
+                            ? "text-blue-700 font-semibold"
+                            : ""
+                        }`}
                       >
                         Mobile Apps
                       </NavigationMenuLink>
@@ -66,12 +91,19 @@ export const Navbar = () => {
                 </NavigationMenuContent>
               </NavigationMenuLink>
 
-              <NavigationMenuLink className="hover:text-red-600" href="/about">
+              <NavigationMenuLink
+                className={` ${
+                  pathname === "/about" ? "text-blue-700 font-semibold" : ""
+                }`}
+                href="/about"
+              >
                 About
               </NavigationMenuLink>
 
               <NavigationMenuLink
-                className="hover:text-red-600"
+                className={`${
+                  pathname === "/contact" ? "text-blue-700 font-semibold" : ""
+                }`}
                 href="/contact"
               >
                 Contact
@@ -89,8 +121,8 @@ export const Navbar = () => {
         </div>
         {/* mobile hamburger menu */}
         <div className="lg:hidden flex">
-          <Button variant="default">
-            <AiOutlineMenu />
+          <Button onClick={toggleMenuOpen} variant="default">
+            {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
           </Button>
         </div>
       </nav>
