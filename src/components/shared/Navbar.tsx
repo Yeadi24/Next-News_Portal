@@ -12,7 +12,8 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ThemeContext } from "@/context/ThemeContext";
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -20,8 +21,11 @@ export const Navbar = () => {
   const toggleMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const { isDarkMode, toggleTheme }: any = useContext(ThemeContext);
   return (
-    <header className="py-4 shadow-md">
+    <header
+      className={`py-4 shadow-md ${isDarkMode ? "bg-gray-900 text-white" : ""}`}
+    >
       <nav className="flex justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* logo */}
         <div className="w-12 h-10">
@@ -113,9 +117,14 @@ export const Navbar = () => {
         </NavigationMenu>
         {/* button and dark mode */}
         <div className="hidden lg:flex">
-          <div className="flex justify-center items-center">
-            <h1 className="mr-3 text-black">Dark Mode</h1>
-            <Switch className="mr-4" />
+          <div
+            onClick={toggleTheme}
+            className="flex justify-center items-center"
+          >
+            <h1 className={`mr-3 ${isDarkMode ? "text-white" : "text-black"}`}>
+              Dark Mode
+            </h1>
+            <Switch className="mr-4" checked={isDarkMode} />
             <Button variant="default">Login</Button>
           </div>
         </div>

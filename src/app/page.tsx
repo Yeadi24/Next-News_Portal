@@ -19,7 +19,6 @@ const Home = async () => {
           ))}
         </div>
       </div>
-      <h1 className="text-3xl">Hello</h1>
       <Community></Community>
     </div>
   );
