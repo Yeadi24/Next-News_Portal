@@ -6,7 +6,7 @@ import { NewsItem } from "@/types/news";
 import Image from "next/image";
 
 const Home = async () => {
-  const data = await fetch("http://localhost:5000/news");
+  const data = await fetch("https://next-news-backend-snowy.vercel.app/news");
   const news = await data.json();
   return (
     <div>
@@ -20,7 +20,6 @@ const Home = async () => {
         </div>
       </div>
       <Community></Community>
-      <Footer />
     </div>
   );
 };

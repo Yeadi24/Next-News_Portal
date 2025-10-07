@@ -27,7 +27,7 @@ export const Navbar = () => {
         <div className="w-12 h-10">
           <Link href="/" className="flex">
             <img src="Next Portal Logo Icon 2.jpg" alt="logo" />
-            <h1 className="font-bold">Next Portal</h1>
+            <h1 className="font-bold">Next News</h1>
           </Link>
         </div>
         {/* menu-bar */}
