@@ -21,7 +21,7 @@ export const Navbar = () => {
   const toggleMenuOpen = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const { isDarkMode, toggleTheme }: any = useContext(ThemeContext);
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext)!;
   return (
     <header
       className={`py-4 shadow-md ${isDarkMode ? "bg-gray-900 text-white" : ""}`}
