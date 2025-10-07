@@ -1,5 +1,6 @@
 import Banner from "@/components/shared/Banner";
 import Community from "@/components/shared/Community";
+import Footer from "@/components/shared/Footer";
 import NewsCard from "@/components/shared/NewsCard";
 import { NewsItem } from "@/types/news";
 import Image from "next/image";
@@ -19,6 +20,7 @@ const Home = async () => {
         </div>
       </div>
       <Community></Community>
+      <Footer />
     </div>
   );
 };
